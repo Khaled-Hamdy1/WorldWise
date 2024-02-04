@@ -19,7 +19,7 @@ function City() {
 
   useEffect(() => {
     getCityById(id || "0");
-  }, [id]);
+  }, [id, getCityById]);
   if (isLoading || currentCity == undefined) return <Spinner />;
   const { cityName, emoji, date, notes } = currentCity;
   return (
