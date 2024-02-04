@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import Spinner from "./Spinner";
 import BackButton from "./BackButton";
 
-const formatDate = (date: string | null) =>
+const formatDate = (date: string | Date | null) =>
   new Intl.DateTimeFormat("en", {
     day: "numeric",
     month: "long",
