@@ -1,18 +1,19 @@
+import { lazy } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { AuthProvider } from "./contexts/FakeAuthContext";
+import { CitiesProvider } from "./contexts/CitiesContext";
+import ProtectedRoute from "./pages/ProtectedRoute";
 import HomePage from "./pages/HomePage";
-import "./index.css";
-import PageNotFound from "./pages/PageNotFound";
 import Product from "./pages/Product";
 import Pricing from "./pages/Pricing";
 import Login from "./pages/Login";
-import AppLayout from "./pages/AppLayout";
 import CityList from "./components/CityList";
 import CountryList from "./components/CountryList";
-import Form from "./components/Form";
-import { CitiesProvider } from "./contexts/CitiesContext";
 import City from "./components/City";
-import { AuthProvider } from "./contexts/FakeAuthContext";
-import ProtectedRoute from "./pages/ProtectedRoute";
+import PageNotFound from "./pages/PageNotFound";
+import "./index.css";
+const Form = lazy(() => import("./components/Form"));
+const AppLayout = lazy(() => import("./pages/AppLayout"));
 
 function App() {
   return (
