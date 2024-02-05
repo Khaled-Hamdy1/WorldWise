@@ -1,4 +1,10 @@
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { ICity } from "../types";
 
 interface ICitiesContextData {
@@ -34,7 +40,7 @@ function CitiesProvider({ children }: { children: React.ReactNode }) {
     })();
   }, []);
 
- const getCityById=useCallback(async function getCityById(id: string) {
+  const getCityById = useCallback(async function getCityById(id: string) {
     try {
       setIsLoading(true);
       const city = await fetch("../../src/data/cities.json")
@@ -47,11 +53,11 @@ function CitiesProvider({ children }: { children: React.ReactNode }) {
     } catch (error) {
       console.log(error);
     }
-  }, [])
+  }, []);
 
   return (
     <CitiesContext.Provider
-      value={{ cities,setCities, isLoading, getCityById, currentCity }}
+      value={{ cities, setCities, isLoading, getCityById, currentCity }}
     >
       {children}
     </CitiesContext.Provider>
@@ -64,6 +70,4 @@ function useCities() {
   }
   return context;
 }
-
 export { CitiesProvider, useCities };
-
