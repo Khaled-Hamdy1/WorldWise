@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./contexts/FakeAuthContext";
 import { CitiesProvider } from "./contexts/CitiesContext";
@@ -12,6 +12,8 @@ import CountryList from "./components/CountryList";
 import City from "./components/City";
 import PageNotFound from "./pages/PageNotFound";
 import "./index.css";
+import Spinner from "./components/Spinner";
+
 const Form = lazy(() => import("./components/Form"));
 const AppLayout = lazy(() => import("./pages/AppLayout"));
 
@@ -29,7 +31,9 @@ function App() {
               path="app"
               element={
                 <ProtectedRoute>
-                  <AppLayout />
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <AppLayout />
+                  </Suspense>
                 </ProtectedRoute>
               }
             >
@@ -37,7 +41,14 @@ function App() {
               <Route path="cities" element={<CityList />} />
               <Route path="cities/:id" element={<City />} />
               <Route path="countries" element={<CountryList />} />
-              <Route path="form" element={<Form />} />
+              <Route
+                path="form"
+                element={
+                  <Suspense fallback={<Spinner />}>
+                    <Form />
+                  </Suspense>
+                }
+              />
             </Route>
             <Route path="*" element={<PageNotFound />} />
           </Routes>
@@ -46,4 +57,5 @@ function App() {
     </AuthProvider>
   );
 }
+
 export default App;
