@@ -15,6 +15,7 @@ import useGeolocation from "../hooks/useGeolocation";
 import Button from "./Button";
 import useUrlPosition from "../hooks/useUrlPosition";
 export default function Map() {
+  console.log("Map")
   const cities = useCities().cities;
   const { lat, lng } = useUrlPosition();
   const [mapPosition, setMapPosition] = useState<LatLngLiteral>({
