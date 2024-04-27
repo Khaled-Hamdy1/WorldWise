@@ -5,7 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { ICity } from "../types";
+import { ICity } from "@/types";
 
 interface ICitiesContextData {
   cities: ICity[];

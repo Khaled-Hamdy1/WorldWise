@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import styles from "./Form.module.css";
 import Button from "./Button";
 import BackButton from "./BackButton";
-import useUrlPosition from "../hooks/useUrlPosition";
+import useUrlPosition from "@/hooks/useUrlPosition";
 import Message from "./Message";
 import Spinner from "./Spinner";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { ICity } from "../types";
-import { useCities } from "../contexts/CitiesContext";
+import { ICity } from "@/types";
+import { useCities } from "@/contexts/CitiesContext";
 import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react-refresh/only-export-components
