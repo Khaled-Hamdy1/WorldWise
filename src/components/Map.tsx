@@ -15,7 +15,6 @@ import useGeolocation from "../hooks/useGeolocation";
 import Button from "./Button";
 import useUrlPosition from "../hooks/useUrlPosition";
 export default function Map() {
-  console.log("Map")
   const cities = useCities().cities;
   const { lat, lng } = useUrlPosition();
   const [mapPosition, setMapPosition] = useState<LatLngLiteral>({
@@ -54,7 +53,7 @@ export default function Map() {
           return (
             <Marker
               key={city.id}
-              position={{ lat: +city.position.lat, lng: +city.position.lng }}
+              position={{ lat: city.position.lat, lng: city.position.lng }}
             >
               <Popup>
                 {city.cityName}, {city.country}

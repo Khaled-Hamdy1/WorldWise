@@ -40,20 +40,19 @@ function CitiesProvider({ children }: { children: React.ReactNode }) {
     })();
   }, []);
 
-  const getCityById = useCallback(async function getCityById(id: string) {
-    try {
-      setIsLoading(true);
-      const city = await fetch("../../src/data/cities.json")
-        .then((res) => res.json())
-        .then((data) => data.cities.find((city: ICity) => city.id === +id))
-        .then((city) => setCurrentCity(city))
-        .catch((error) => console.log(error));
-      setIsLoading(false);
-      return city;
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+  const getCityById = useCallback(
+    async function getCityById(id: string) {
+      try {
+        setIsLoading(true);
+        const city = cities.find((city) => city.id === +id);
+        setCurrentCity(city);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [cities]
+  );
 
   return (
     <CitiesContext.Provider

@@ -44,7 +44,7 @@ function Form() {
       country,
       date,
       notes,
-      position: { lat: +lng!, lng: +lng! },
+      position: { lat: lat, lng: lng },
       emoji,
       id: +Date.now().toString(),
     };
