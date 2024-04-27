@@ -1,11 +1,6 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useCallback, useContext, useState } from "react";
 import { ICity } from "@/types";
+import citiesJson from "@/data/cities.json";
 
 interface ICitiesContextData {
   cities: ICity[];
@@ -20,25 +15,11 @@ const CitiesContext = createContext<ICitiesContextData>(
 );
 
 function CitiesProvider({ children }: { children: React.ReactNode }) {
-  const [cities, setCities] = useState<ICity[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [cities, setCities] = useState(citiesJson.cities as ICity[]);
+  const [isLoading, setIsLoading] = useState(false);
   const [currentCity, setCurrentCity] = useState<ICity | undefined>(undefined);
 
-  useEffect(() => {
-    (async function getCities() {
-      try {
-        setIsLoading(true);
-        await fetch("../src/data/cities.json")
-          .then((res) => res.json())
-          .then((data) => {
-            setCities(data.cities);
-            setIsLoading(false);
-          });
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
+  console.log('cities', cities);
 
   const getCityById = useCallback(
     async function getCityById(id: string) {
